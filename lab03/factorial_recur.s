@@ -27,18 +27,13 @@ factorial:
 
 else:
     mv a1 a0
-# BEGIN PROLOGUE
     addi sp sp -8
     sw a1, 0(sp)
     sw ra, 4(sp)
-# END PROLOGUE
     addi a0 a0 -1
     jal ra, factorial
-
-# BEGIN EPILOGUE
     lw a1 0(sp)
     lw ra 4(sp)
     addi sp sp 8
-# END EPILOGUE
     mul a0 a0 a1
     jr ra
