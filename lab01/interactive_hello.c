@@ -6,9 +6,10 @@ int main(int argc, char *argv[]) {
     char a_word[MAX_LEN];
 
     printf("What's your name?\n");
-    stdin  = fopen("ex3.txt","r");
+    // stdin  = fopen("ex3.txt","r");
+    // fgets(a_word, MAX_LEN, stdin);
     fgets(a_word, MAX_LEN, stdin);
     printf("Hey, %sI just really wanted to say hello to you.\nI hope you have a wonderful day.", a_word);
-    fclose(stdin);
+    //fclose(stdin);
     return 0;
 }

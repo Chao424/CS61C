@@ -55,7 +55,6 @@ main:
 # FIXME Fix the reported error in this function (you can delete lines
 # if necessary, as long as the function still returns 1 in a0).
 simple_fn:
-    mv a0, t0
     li a0, 1
     ret
 
@@ -76,6 +75,9 @@ simple_fn:
 # missing. Another hint: what does the "s" in "s0" stand for?
 naive_pow:
     # BEGIN PROLOGUE
+    addi sp sp -8
+    sw s0 -4(sp)
+    sw ra 0(sp)
     # END PROLOGUE
     li s0, 1
 naive_pow_loop:
@@ -86,6 +88,9 @@ naive_pow_loop:
 naive_pow_end:
     mv a0, s0
     # BEGIN EPILOGUE
+    addi sp sp 8
+    lw s0 -4(sp)
+    lw ra 0(sp)
     # END EPILOGUE
     ret
 
