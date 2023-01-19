@@ -66,22 +66,30 @@ map:
     # are modified by the callees, even when we know the content inside the functions 
     # we call. this is to enforce the abstraction barrier of calling convention.
 mapLoop:
-    add t1, s0, x0      # load the address of the array of current node into t1
+    lw t1, 0(s0)        # load the address of the array of current node into t1
+                        # err1
     lw t2, 4(s0)        # load the size of the node's array into t2
+      
+    slli a1, t0, 2      # offset the array address by the count
+    add a1, a1, t1
+                        
+    lw a0, 0(a1)        # load the value at that address into a0
 
-    add t1, t1, t0      # offset the array address by the count
-    lw a0, 0(t1)        # load the value at that address into a0
+    jalr s1             # call the function on that value
 
-    jalr s1             # call the function on that value.
-
-    sw a0, 0(t1)        # store the returned value back into the array
+    sw a0, 0(a1)        # store the returned value back into the array
     addi t0, t0, 1      # increment the count
+                        
+
     bne t0, t2, mapLoop # repeat if we haven't reached the array size yet
 
-    la a0, 8(s0)        # load the address of the next node into a0
-    lw a1, 0(s1)        # put the address of the function back into a1 to prepare for the recursion
+    lw a0, 8(s0)        # load the address of the next node into a0
+                        # err3: la -> lw
+    add a1, s1, x0      # put the address of the function back into a1 to prepare for the recursion
+                        # err4: lw a1 0(s1) -> add a1 s1 x0;
 
-    jal  map            # recurse
+    jal map             # recurse
+                    
 done:
     lw s0, 8(sp)
     lw s1, 4(sp)

@@ -1,19 +1,19 @@
 Exercise 1:
-    1.
-    2.
-    3.
+    1.8
+    2.6,4,0,4
+    3.no,no
 
 Exercise 2:
-    1.
+    1.00,20,40,60,80,a0,c0,e0,00,20
 
 Exercise 3:
-    1.
+    1.physical memory size
 
 --- lines below are ignored by the AG ---
 
 Exercise 1 Checkoff Questions:
-    1.
-    2.
+    1. first we find TLB miss and go into page table, if page table still find miss, then search free physical memory and write the physical memory address back to page table and TLB
+    2. because there are 4 physical address but 8 vitural mem address
 
 Exercise 4 Checkoff Question:
     1.

@@ -51,8 +51,8 @@ int main( int argc, char **argv ) {
     int *B = (int*)malloc( n*n*sizeof(int) );
 
     /* run tests */
-    benchmark(A, B, n, blocksize, transpose_naive, "naive transpose");
     benchmark(A, B, n, blocksize, transpose_blocking, "transpose with blocking");
+    benchmark(A, B, n, blocksize, transpose_naive, "naive transpose");
 
     /* release resources */
     free( A );
